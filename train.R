@@ -25,7 +25,7 @@ fitControl <- trainControl(## Repeating k-fold 10 CV
     number = 10,
     classProbs = TRUE,
     allowParallel = TRUE,
-    summaryFunction = twoClassSummary,
+    summaryFunction = prSummary,
     search = "random",
     # Try subsampling for class imbalance
     sampling = "smote")
@@ -54,7 +54,7 @@ train_rf <- function(df, factorize_sex = TRUE){
                   trControl = fitControl,
                   preProcess = c("nzv", "center", "scale"),
                   tuneLength = 8,
-                  metric = "ROC")
+                  metric = "F1")
   return(rf.fit)
 }
 
